@@ -1,0 +1,17 @@
+{
+    "name": "Andrew's Blog PWA",
+    "short_name": "AnBlog",
+    "description": "Andrew's Blog as PWA",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#00897B",
+    "theme_color": "#00897B",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "gcm_sender_id": "173978774635"
+}
