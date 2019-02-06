@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#00897B">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="manifest" href="/manifest.json">
+    <title>English Premier League</title>
+</head>
+<body>
+
+    <!-- Navigasi -->
+  <nav class="teal lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo" id="logo-container">English Premier League</a>
+      <a href="#" class="sidenav-trigger" data-target="nav-mobile">☰</a>
+      
+      <ul class="topnav right hide-on-med-and-down"></ul>
+      <ul class="sidenav" id="nav-mobile"></ul>
+    </div>
+  </nav>
+  <!-- Akhir Navigasi -->
+
+  <div class="container" id="body-content"></div>
+  <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/idb.js"></script>
+  <script src="js/db.js"></script>
+
+  <script type="text/javascript">
+
+        // $.ajax({
+        //   headers: { 'X-Auth-Token': 'YOUR_API_TOKEN' },
+        //   url: 'http://api.football-data.org/v2/matches?status="LIVE"',
+        //   dataType: 'json',
+        //   type: 'GET',
+        // }).done(function(response) {
+        //   // do something with the response, e.g. isolate the id of a linked resource   
+        //   console.log(response);
+        // });
+
+        // Periksa service worker
+        if (!('serviceWorker' in navigator)) {
+          console.log("Service worker tidak didukung browser ini.");
+        } else{
+          registerServiceWorker();
+          requestPermission();
+        }
+
+        // REGISTER SERVICE WORKER
+        function registerServiceWorker() {
+          return navigator.serviceWorker.register('/service-worker.js')
+            .then(function (registration) {
+              console.log('Registrasi service worker berhasil.');
+              return registration;
+            })
+            .catch(function(err){
+              console.error('Registrasi service worker gagal.', err);
+            });
+        }
+
+
+        // Meminta ijin menggunakan Notification API
+        function requestPermission() {
+          if('Notification' in window){
+          Notification.requestPermission().then(function(result){
+            if(result === "denied"){
+              console.log("Fitur notifikasi tidak diijinkan.");
+              return;
+            } else if (result === "default") {
+              console.error("Pengguna menutup kotak dialog permintaan ijin.");
+              return;
+            }
+
+            if (('PushManager' in window)) {
+                navigator.serviceWorker.getRegistration().then(function(reg) {
+                    reg.pushManager.subscribe({
+                        userVisibleOnly: true
+                    }).then(function(sub) {
+                        console.log('Berhasil melakukan subscribe dengan endpoint: ', sub.endpoint);
+                        console.log('Berhasil melakukan subscribe dengan p256dh key: ',
+                          btoa(String.fromCharCode.apply(null, new Uint8Array(sub.getKey('p256dh')))));
+                        console.log('Berhasil melakukan subscribe dengan auth key: ',
+                          btoa(String.fromCharCode.apply(null, new Uint8Array(sub.getKey('auth')))));
+                    }).catch(function(e) {
+                        console.error('Tidak dapat melakukan subscribe ', e);
+                    });
+                });
+            }
+
+          });
+        }
+          }
+        
+
+        // REQUEST API UNTUK PERTAMA KALI
+        document.addEventListener("DOMContentLoaded", function() {
+            var page = window.location.hash.substr(1);
+        });
+
+      </script>
+
+</body>
+</html>

@@ -6,23 +6,19 @@ else
   console.log(`Workbox gagal dimuat`);
 
 workbox.precaching.precacheAndRoute([
-  { url: '/', revision: '1' },
-  { url: '/nav.html', revision: '1' },
-  { url: '/index.html', revision: '1' },
-  { url: '/article.html', revision: '1' },
-  { url: '/pages/home.html', revision: '1' },
-  { url: '/pages/scorers.html', revision: '1' },
-  { url: '/pages/standings.html', revision: '1' },
-  { url: '/pages/saved.html', revision: '1' },
-  { url: '/css/materialize.min.css', revision: '1' },
-  { url: '/js/materialize.min.js', revision: '1' },
-  { url: '/js/nav.js', revision: '1' },
-  { url: '/js/api.js', revision: '1' },
-  { url: '/js/idb.js', revision: '1' },
-  { url: '/js/db.js', revision: '1' },
-  { url: '/js/main.js', revision: '1' },
-  { url: '/icon.png', revision: '1' },
-  { url: '/manifest.json', revision: '1' },
+  { url: '/', revision: '2' },
+  { url: '/nav.html', revision: '2' },
+  { url: '/index.html', revision: '2' },
+  { url: '/article.html', revision: '2' },
+  { url: '/css/materialize.min.css', revision: '2' },
+  { url: '/js/materialize.min.js', revision: '2' },
+  { url: '/js/nav.js', revision: '2' },
+  { url: '/js/api.js', revision: '2' },
+  { url: '/js/idb.js', revision: '2' },
+  { url: '/js/db.js', revision: '2' },
+  { url: '/js/main.js', revision: '2' },
+  { url: '/icon.png', revision: '2' },
+  { url: '/manifest.json', revision: '2' },
 ]);
 
 workbox.routing.registerRoute(

@@ -1,0 +1,4 @@
+Github: https://andrewtio.github.io/
+Firebase: 
+        Project Console: https://console.firebase.google.com/project/codepolitan-news-reader-cb620/overview
+        Hosting URL: https://codepolitan-news-reader-cb620.firebaseapp.com
